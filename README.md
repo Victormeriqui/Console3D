@@ -1,7 +1,7 @@
 # Console3D
 C++ 3D Software rendering engine for the Windows command prompt.
 
-Console3D is a software 3D rendering engine that uses the Windows command prompt as an output display, thus rendering full 3D models in the Windows Console.
+Console3D is a software 3D rendering engine that uses the Windows command prompt as an output display, thus rendering full 3D models in the Windows Console. It's made in C++ and uses no external libraries other than the ones Windows makes available for the command prompt functions.
 
 #Features
 Some of the features the engine has:
