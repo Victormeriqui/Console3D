@@ -15,7 +15,7 @@ Some of the features the engine has:
   -Point lighting  
 
 #Resolution
-The resolution (font size used) is 4x6 Raster Fonts, but in reallity the "pixels" are 4x3.
+The resolution (font size used) is 4x6 Raster Fonts, but in reality the "pixels" are 4x3.
 This is because in order to draw on the command prompt, Console3D uses only 3 types of characters: a bottom half block, a top half block and a full block.
 Because of this the vertical resolution is divided by 2.
 
