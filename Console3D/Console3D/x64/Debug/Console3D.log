@@ -1,0 +1,37 @@
+﻿Build started 10/4/2015 1:21:42 AM.
+     1>Project "C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\Console3D\Console3D.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /D WIN32 /D _SCL_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_WARNINGS /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt Engine.cpp Main.cpp Renderer.cpp Scene.cpp
+         Scene.cpp
+         Generating Code...
+         Compiling...
+         Main.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Renderer.cpp
+         Engine.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Debug\Console3D.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Debug\Console3D.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Debug\Console3D.lib" /MACHINE:X64 x64\Debug\Camera.obj
+         x64\Debug\DirectionalLight.obj
+         x64\Debug\Engine.obj
+         x64\Debug\LightingManager.obj
+         x64\Debug\PointLight.obj
+         x64\Debug\Renderer.obj
+         x64\Debug\Main.obj
+         x64\Debug\Matrix.obj
+         x64\Debug\Mesh.obj
+         x64\Debug\Quaternion.obj
+         x64\Debug\Scene.obj
+         x64\Debug\Screen.obj
+         x64\Debug\ShadowMap.obj
+         x64\Debug\SpotLight.obj
+         x64\Debug\Transform.obj
+         x64\Debug\TriangleEdge.obj
+         x64\Debug\Vector.obj
+         x64\Debug\Vertex.obj
+         Console3D.vcxproj -> C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Debug\Console3D.exe
+     1>Done Building Project "C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\Console3D\Console3D.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.11

@@ -1,0 +1,35 @@
+﻿Build started 10/4/2015 1:31:11 AM.
+     1>Project "C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\Console3D\Console3D.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D WIN32 /D _SCL_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_WARNINGS /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /openmp /Fo"x64\Release64\\" /Fd"x64\Release64\vc140.pdb" /Gd /TP /errorReport:prompt Scene.cpp
+         Scene.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Release64\Console3D.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Release64\Console3D.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Release64\Console3D.lib" /MACHINE:X64 /PROFILE x64\Release64\Camera.obj
+         x64\Release64\DirectionalLight.obj
+         x64\Release64\Engine.obj
+         x64\Release64\LightingManager.obj
+         x64\Release64\PointLight.obj
+         x64\Release64\Renderer.obj
+         x64\Release64\Main.obj
+         x64\Release64\Matrix.obj
+         x64\Release64\Mesh.obj
+         x64\Release64\Quaternion.obj
+         x64\Release64\Scene.obj
+         x64\Release64\Screen.obj
+         x64\Release64\ShadowMap.obj
+         x64\Release64\SpotLight.obj
+         x64\Release64\Transform.obj
+         x64\Release64\TriangleEdge.obj
+         x64\Release64\Vector.obj
+         x64\Release64\Vertex.obj
+         Generating code
+         2 of 496 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+           0 functions were new in current compilation
+           12 functions had inline decision re-evaluated but remain unchanged
+         Finished generating code
+         Console3D.vcxproj -> C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\x64\Release64\Console3D.exe
+     1>Done Building Project "C:\Users\zeair\Documents\Visual Studio 2015\Projects\Console3D\Console3D\Console3D.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.49
