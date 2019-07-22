@@ -55,23 +55,15 @@ namespace Render
 
 	void Mesh::CalculateNormals()
 	{
-		for (int i = 0; i < indices_c; i += 3)
+		for (int i = 0; i < indices_c - 3; i += 3)
 		{
-			int idx1 = pIndices[i];
-			int idx2 = pIndices[i + 1];
-			int idx3 = pIndices[i + 2];
-
-			Vertex* v1 = &pVertices[idx1];
-			Vertex* v2 = &pVertices[idx2];
-			Vertex* v3 = &pVertices[idx3];
+			Vertex* v1 = &pVertices[pIndices[i]];
+			Vertex* v2 = &pVertices[pIndices[i + 1]];
+			Vertex* v3 = &pVertices[pIndices[i + 2]];
 
 			Vector* p1 = v1->GetPosition();
 			Vector* p2 = v2->GetPosition();
 			Vector* p3 = v3->GetPosition();
-
-			Vector* n1 = v1->GetNormal();
-			Vector* n2 = v2->GetNormal();
-			Vector* n3 = v3->GetNormal();
 
 			Vector l1 = *p2 - *p1;
 			Vector l2 = *p3 - *p1;
@@ -79,18 +71,18 @@ namespace Render
 			Vector normal = l1.GetCrossProduct(&l2);
 			normal.Normalize();
 
-			Vector nn1 = (*n1) + normal;
-			Vector nn2 = (*n2) + normal;
-			Vector nn3 = (*n3) + normal;
+			Vector n1 = *v1->GetNormal();
+			Vector n2 = *v2->GetNormal();
+			Vector n3 = *v3->GetNormal();
 
-			v1->SetNormal(&nn1);
-			v2->SetNormal(&nn2);
-			v3->SetNormal(&nn3);
+			v1->SetNormal(&(n1 + normal));
+			v2->SetNormal(&(n2 + normal));
+			v3->SetNormal(&(n3 + normal));
 		}
 
 		for (int i = 0; i < vertices_c; i++)
 		{
-			pVertices[i].GetNormal()->Normalize();		
+			pVertices[i].GetNormal()->Normalize();
 		}
 	}
 	
@@ -107,7 +99,7 @@ namespace Render
 			Vertex v2 = *(pVertices + pIndices[i + 1]);
 			Vertex v3 = *(pVertices + pIndices[i + 2]);
 
-			renderer->DrawTriangle(&transform, &v1, &v2, &v3, (i%15)+1, false, cull);
+			renderer->DrawTriangle(&transform, &v1, &v2, &v3, (i%15)+1, false, cull, false);
 		}
 
 	}
@@ -117,14 +109,14 @@ namespace Render
 		if (pVertices == nullptr || pIndices == nullptr || indices_c == 0 || vertices_c == 0)
 			return;
 
-		#pragma omp parallel for
+		//#pragma omp parallel for
 		for (int i = 0; i < indices_c; i += 3)
 		{
 			Vertex v1 = *(pVertices + pIndices[i]);
 			Vertex v2 = *(pVertices + pIndices[i + 1]);
 			Vertex v3 = *(pVertices + pIndices[i + 2]);
 
-			renderer->DrawTriangle(&transform, &v1, &v2, &v3, color, false, cull);
+			renderer->DrawTriangle(&transform, &v1, &v2, &v3, color, false, cull, false);
 		}
 
 	}
@@ -141,7 +133,7 @@ namespace Render
 			Vertex v2 = *(pVertices + pIndices[i + 1]);
 			Vertex v3 = *(pVertices + pIndices[i + 2]);
 
-			renderer->DrawTriangle(&transform, &v1, &v2, &v3, 0, true, cull);
+			renderer->DrawTriangle(&transform, &v1, &v2, &v3, 0, true, cull, false);
 		}
 
 	}

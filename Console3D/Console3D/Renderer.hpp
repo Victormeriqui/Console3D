@@ -1,6 +1,8 @@
 #ifndef Renderer_HPP
 #define Renderer_HPP
 
+#define FLAT_SHADING false
+
 #include <stdint.h>
 
 #include "Util.hpp"
@@ -45,7 +47,7 @@ namespace Render
 		bool ClipZ(Vertex vertices[], int* vertices_c, Vertex axisverts[]);
 		bool ClipVertices(Vertex vertices[], int* vertices_c);
 
-		void DrawClippedTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull);
+		void DrawClippedTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull, bool model);
 		void DrawClippedShadowMapTriangle(BaseLight* light, Vertex* v1, Vertex* v2, Vertex* v3);
 
 		void DrawEdges(TriangleEdge* leftedge, TriangleEdge* rightedge, bool right, uint8_t color, bool lit, Transform* transform);
@@ -88,7 +90,7 @@ namespace Render
 		void DrawPoint(const Vector* point, uint8_t color);
 		void DrawPoint(Transform* transform, Vertex* vert, uint8_t color);
 			
-		void DrawTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull);
+		void DrawTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull, bool model);
 		
 		void DrawShadowMapTriangle(Transform* transform, BaseLight* light, Vertex* v1, Vertex* v2, Vertex* v3);
 

@@ -62,6 +62,15 @@ namespace Math
 
 			return tmin + (scaled * tdist);
 		}
+
+		inline Vector InterpolateVectors(double val, Vector* from, Vector* to)
+		{
+			double x = Lerp(val, from->x, to->x);
+			double y = Lerp(val, from->y, to->y);
+			double z = Lerp(val, from->z, to->z);
+
+			return Vector(x, y, z);
+		}
 	
 		inline double TriangleArea(const Vector* p1, const Vector* p2, const Vector* p3)
 		{

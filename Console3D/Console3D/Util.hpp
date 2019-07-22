@@ -17,7 +17,7 @@ using namespace Render;
 namespace Base
 {
 	typedef unsigned char uchar8_t;
-	
+
 	inline void FindCenter(long int* x, long int* y)
 	{
 		RECT rect = { 0, 0, 0, 0 };
@@ -64,6 +64,8 @@ namespace Base
 		
 		return ret;
 	}
+
+	
 
 	inline bool LoadModel(const char* filepath, Vertex** vertices, int* vertices_c, int** indices, int* indices_c)
 	{

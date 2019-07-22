@@ -11,7 +11,7 @@ namespace Base
 	namespace Time
 	{
 		static high_resolution_clock::time_point start;
-		bool started = false;
+		static bool started = false;
 
 		inline double GetCurTime()
 		{

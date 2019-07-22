@@ -7,6 +7,7 @@
 #include "Transform.hpp"
 #include "LightingManager.hpp"
 #include "PointLight.hpp"
+#include "Model.hpp"
 
 using namespace Render;
 using namespace Lighting;
@@ -29,6 +30,7 @@ namespace Game
 		Mesh* pFloor;
 		Mesh* pMesh;
 		Mesh* pRefMesh;
+		Model* model;
 
 	public:
 		

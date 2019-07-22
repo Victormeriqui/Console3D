@@ -84,6 +84,9 @@
     <ClCompile Include="ShadowMap.cpp">
       <Filter>Source Files\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Screen.hpp">
@@ -157,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="ShadowMap.hpp">
       <Filter>Source Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.hpp">
+      <Filter>Source Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MD2.hpp">
+      <Filter>Source Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.hpp">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

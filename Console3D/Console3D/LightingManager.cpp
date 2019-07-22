@@ -21,7 +21,7 @@ namespace Render
 			return MathUtil::Clamp(lightamount, 0, 1);
 		}
 
-		double LightingManager::CalculateAllLightAmount(const Vector* vertexpos, const Vector* vertexnormal)
+		double LightingManager::CalculateAllLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model)
 		{
 			double lightamount = 0;
 
@@ -30,13 +30,13 @@ namespace Render
 			int i = 0;
 						
 			for (i = 0; i < directionallights_c; i++)			
-				lightamount += directionallights[i].GetLightAmount(vertexpos, vertexnormal);
+				lightamount += directionallights[i].GetLightAmount(vertexpos, vertexnormal, model);
 
 			for (i = 0; i < pointlights_c; i++)
-				lightamount += pointlights[i].GetLightAmount(vertexpos, vertexnormal);
+				lightamount += pointlights[i].GetLightAmount(vertexpos, vertexnormal, model);
 
 			for (i = 0; i < spotlights_c; i++)
-				lightamount += spotlights[i].GetLightAmount(vertexpos, vertexnormal);
+				lightamount += spotlights[i].GetLightAmount(vertexpos, vertexnormal, model);
 			
 			return SaturateLight(lightamount);
 		}

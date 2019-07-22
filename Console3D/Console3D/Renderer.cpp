@@ -253,15 +253,48 @@ namespace Render
 		return candraw;
 	}
 
-	void Renderer::DrawTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull)
+	void Renderer::DrawTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull, bool model)
 	{
+		Vector p1 = *(v1->GetPosition());
+		Vector p2 = *(v2->GetPosition());
+		Vector p3 = *(v3->GetPosition());
+
+		Vector edge1 = p2 - p1;
+		Vector edge2 = p3 - p1;
+		
+#if FLAT_SHADING 
+	
+		Vector facenormal = edge1.GetCrossProduct(&edge2);
+		facenormal.Normalize();
+		facenormal.w = 0;
+		
+		NormalTransform(transform, &facenormal);
+		facenormal.Normalize();
+
+		v1->SetNormal(&facenormal);
+		v2->SetNormal(&facenormal);
+		v3->SetNormal(&facenormal);
+#else
+		v1->GetNormal()->w = 0;
+		v2->GetNormal()->w = 0;
+		v3->GetNormal()->w = 0;
+		
+		NormalTransform(transform, v1->GetNormal());
+		NormalTransform(transform, v2->GetNormal());
+		NormalTransform(transform, v3->GetNormal());
+		
+		v1->GetNormal()->Normalize();
+		v2->GetNormal()->Normalize();
+		v3->GetNormal()->Normalize();
+#endif
+
 		ModelTransform(transform, v1->GetPosition()); ViewTransform(transform, v1->GetPosition()); ProjectionTransform(transform, v1->GetPosition());
 		ModelTransform(transform, v2->GetPosition()); ViewTransform(transform, v2->GetPosition()); ProjectionTransform(transform, v2->GetPosition());
 		ModelTransform(transform, v3->GetPosition()); ViewTransform(transform, v3->GetPosition()); ProjectionTransform(transform, v3->GetPosition());
 
 		if (Base::InFrustum(v1->GetPosition()) && Base::InFrustum(v2->GetPosition()) && Base::InFrustum(v3->GetPosition()))
 		{
-			DrawClippedTriangle(transform, v1, v2, v3, color, lit, cull);
+			DrawClippedTriangle(transform, v1, v2, v3, color, lit, cull, model);
 			return;
 		}
 		
@@ -277,20 +310,16 @@ namespace Render
 			Vertex firstvert = clippedverts[0];
 
 			for (int i = 1; i < clippedverts_c - 1; i++)			
-				DrawClippedTriangle(transform, &firstvert, &clippedverts[i], &clippedverts[i + 1], color, lit, cull);			
+				DrawClippedTriangle(transform, &firstvert, &clippedverts[i], &clippedverts[i + 1], color, lit, cull, model);			
 		}
 		
 	}
 
-	void Renderer::DrawClippedTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull)
+	void Renderer::DrawClippedTriangle(Transform* transform, Vertex* v1, Vertex* v2, Vertex* v3, uint8_t color, bool lit, bool cull, bool model)
 	{
 		Vector p1 = *(v1->GetPosition());
 		Vector p2 = *(v2->GetPosition());
 		Vector p3 = *(v3->GetPosition());
-
-		Vector n1 = *(v1->GetNormal());
-		Vector n2 = *(v2->GetNormal());
-		Vector n3 = *(v3->GetNormal());
 
 		if (cull)
 		{		
@@ -299,7 +328,7 @@ namespace Render
 			Vector edge1 = p2 - p1;
 			Vector edge2 = p3 - p1;
 
-			Vector facenormal = edge1.GetCrossProduct(&edge2);
+			Vector facenormal = model ? -edge1.GetCrossProduct(&edge2) : edge1.GetCrossProduct(&edge2);
 
 			if (center.GetDotProduct(&facenormal) > 0)
 				return;
@@ -307,9 +336,6 @@ namespace Render
 
 		pScreen->triangles = pScreen->triangles++;
 		
-		NormalTransform(transform, &n1);
-		NormalTransform(transform, &n2);
-		NormalTransform(transform, &n3);
 
 		Vector cp1 = p1;
 		Vector cp2 = p2;
@@ -319,11 +345,11 @@ namespace Render
 		IProjectionTransform(transform, &cp1); IViewTransform(transform, &cp1);
 		IProjectionTransform(transform, &cp2); IViewTransform(transform, &cp2);
 		IProjectionTransform(transform, &cp3); IViewTransform(transform, &cp3);
-
-		double l1 = lit ? lightingmanager.CalculateAllLightAmount(&cp1, &n1) : 0;
-		double l2 = lit ? lightingmanager.CalculateAllLightAmount(&cp2, &n2) : 0;
-		double l3 = lit ? lightingmanager.CalculateAllLightAmount(&cp3, &n3) : 0;
-
+		
+		double l1 = lit ? lightingmanager.CalculateAllLightAmount(&cp1, v1->GetNormal(), model) : 0;
+		double l2 = lit ? lightingmanager.CalculateAllLightAmount(&cp2, v2->GetNormal(), model) : 0;
+		double l3 = lit ? lightingmanager.CalculateAllLightAmount(&cp3, v3->GetNormal(), model) : 0;
+		
 		NDCTransform(&p1);
 		NDCTransform(&p2);
 		NDCTransform(&p3);
@@ -331,7 +357,7 @@ namespace Render
 		SortTriangleVertices(&p1, &p2, &p3, &l1, &l2, &l3);	
 		
 		double area = MathUtil::TriangleArea(&p1, &p2, &p3);
-		//pScreen->DrawFrame();
+	
 		bool right = area >= 0;
 			
 		TriangleEdge topmid = TriangleEdge(&p1, l1, &p2, l2);
@@ -554,6 +580,8 @@ namespace Render
 				if (cz < z)
 					continue;
 				
+				//DrawPoint(&Vector(x, y, z), intensity);
+
 				light->GetShadowMap()->SetDepthPoint(x, y, z);
 
 				z += zslope;

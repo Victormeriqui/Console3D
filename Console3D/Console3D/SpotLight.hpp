@@ -34,7 +34,7 @@ namespace Render
 			SpotLight(const Vector* pos, const Vector* direction, double intensity, double range, double angle, bool castshadows);
 			~SpotLight();
 
-			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal);
+			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal, bool model);
 			virtual Matrix GetLightMatrix();
 
 			Vector GetPosition();

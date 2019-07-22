@@ -26,7 +26,7 @@ namespace Render
 			DirectionalLight(const Vector* direction, double intensity, bool castshadows);
 			~DirectionalLight();
 
-			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal);
+			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal, bool model);
 			virtual Matrix GetLightMatrix();
 
 			Vector GetDirection();

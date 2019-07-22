@@ -43,6 +43,7 @@ namespace Render
 
 		Vector* GetPosition();
 		void SetPosition(const Vector* vec);
+		void SetPosition(double x, double y, double z);
 
 		Vector* GetNormal();
 		void SetNormal(const Vector* normal);

@@ -43,7 +43,7 @@ namespace Render
 			}
 		}
 
-		double PointLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal)
+		double PointLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model)
 		{
 			double lightamount = 0;
 
@@ -57,7 +57,7 @@ namespace Render
 			
 			double attval = attenuation.c + attenuation.b * lightdist + attenuation.a * lightdist * lightdist + 0.0001;
 
-			double lightval = lightdir.GetDotProduct(vertexnormal);
+			double lightval = -lightdir.GetDotProduct(vertexnormal);
 
 			lightamount += (lightval * intensity) / attval;
 

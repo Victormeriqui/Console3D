@@ -36,7 +36,7 @@ namespace Render
 			{
 				pShadowMap = new ShadowMap(200, 200);
 				lightprojmatrix = Matrix();
-				lightprojmatrix.SetPerspectiveProjectionMatrix(200, 200, 0.1, 100, angle);
+				lightprojmatrix.SetPerspectiveProjectionMatrix(200, 200, 0.1, 100, 50);
 			}
 		}
 
@@ -49,7 +49,7 @@ namespace Render
 			}
 		}
 
-		double SpotLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal)
+		double SpotLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model)
 		{
 			double lightamount = 0;
 			
@@ -162,7 +162,7 @@ namespace Render
 		void SpotLight::SetAngle(double val)
 		{
 			angle = val;
-			lightprojmatrix.SetPerspectiveProjectionMatrix(200, 200, 0.1, 100, val*2);
+			lightprojmatrix.SetPerspectiveProjectionMatrix(200, 200, 0.1, 100, 50);
 		}
 		
 		Attenuation SpotLight::GetAttenuation()

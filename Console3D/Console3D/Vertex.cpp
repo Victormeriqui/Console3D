@@ -53,6 +53,13 @@ namespace Render
 		pos = *vec;
 	}
 	
+	void Vertex::SetPosition(double x, double y, double z)
+	{
+		pos.x = x;
+		pos.y = y;
+		pos.z = z;
+	}
+
 	Vector* Vertex::GetNormal()
 	{
 		return &normal;

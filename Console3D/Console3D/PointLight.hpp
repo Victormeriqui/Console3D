@@ -29,7 +29,7 @@ namespace Render
 			PointLight(const Vector* pos, double intensity, double range, bool castshadows);
 			~PointLight();
 
-			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal);
+			virtual double GetLightAmount(const Vector * vertexpos, const Vector * vertexnormal, bool model);
 			virtual Matrix GetLightMatrix();
 
 			Vector GetPosition();

@@ -38,7 +38,7 @@ namespace Render
 			LightingManager();
 			~LightingManager();
 
-			double CalculateAllLightAmount(const Vector* vertexpos, const Vector* vertexnormal);
+			double CalculateAllLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model);
 
 			void SetAmbientLight(double val);
 			double GetAmbientLight();

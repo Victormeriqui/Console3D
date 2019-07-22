@@ -8,6 +8,7 @@
 #include "Scene.hpp"
 #include "Color.hpp"
 #include "Engine.hpp"
+#include "Util.hpp"
 
 using namespace Render;
 
@@ -32,7 +33,8 @@ int main()
 	uint8_t fontw = 4;
 	uint8_t fonth = 6;
 	//const COLORREF* palette = PALETTE_DEFAULT;
-	const COLORREF* palette = PALETTE_GREYSCALE_2;
+	const COLORREF* palette = PALETTE_GREYSCALE;
+	//const COLORREF* palette = PALETTE_GRADIENT;
 	const wchar_t* font = L"Raster Fonts";
 	
 	/*
@@ -48,7 +50,7 @@ int main()
 
 	Scene scene = Scene(&screen);
 	Engine engine = Engine(&screen, &scene, &hOut);
-
+	
 	engine.Start();
 
 	SetNormalFont(&hOut);

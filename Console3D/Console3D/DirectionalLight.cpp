@@ -39,9 +39,9 @@ namespace Render
 		}
 
 
-		double DirectionalLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal)
+		double DirectionalLight::GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model)
 		{
-			double lightamount = direction.GetDotProduct(&-(*vertexnormal));
+			double lightamount = model ? -direction.GetDotProduct(vertexnormal) : -direction.GetDotProduct(vertexnormal);;
 			
 			if (lightamount <= 0)
 				return 0;

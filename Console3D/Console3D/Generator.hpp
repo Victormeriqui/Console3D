@@ -5,12 +5,62 @@
 
 #include "Vertex.hpp"
 #include "Vector.hpp"
+#include "Noise.hpp"
 
 namespace Game
 {
 
-	inline void GeneratePlane(Vertex** vertices, int* vertices_c, int** indices, int* indices_c, int width, int depth)
+	inline void GeneratePlane(Vertex** vertices, int* vertices_c, int** indices, int* indices_c, int width, int height, double scale)
 	{
+		*vertices = new Vertex[width * height];
+		int verts_c = 0;
+		*indices = new int[width * height * 6];
+		int index_c = 0;
+
+		double noisex = 0;
+		double noisey = 0;
+
+		for (int y = 0; y < height; y++)
+		{
+			noisex = 0;
+			for (int x = 0; x < width; x++)
+			{
+				double nois = Math::Noise(noisex, noisey, 5);
+				(*vertices)[verts_c++] = Vertex(x/scale, y/scale, nois, 0, 0, 0);
+				
+				noisex += 0.3;
+			}
+			noisey += 0.3;
+		}
+		int i = 0;
+		int blaa = 0;
+		for (int y = 0; y < height-1; y++)
+		{
+			for (int x = 0; x < width-1; x++)
+			{
+				blaa = i + width;
+				(*indices)[index_c++] = blaa;
+				blaa = i + 1;
+				(*indices)[index_c++] = blaa;
+
+				(*indices)[index_c++] = i;
+			
+			
+				i++;
+				blaa = i + width - 1;
+				(*indices)[index_c++] = blaa;
+				blaa = i + width;
+				(*indices)[index_c++] = blaa;
+				(*indices)[index_c++] = i;
+		
+		
+			}
+			i++;
+		}
+
+		*indices_c = index_c;
+		*vertices_c = verts_c;
+		/*
 		int hwidth = width / 2;
 		int hdepth = depth / 2;
 
@@ -23,7 +73,7 @@ namespace Game
 		{
 			for (int x = -hwidth; x <= hwidth; x++)
 			{
-				(*vertices)[verts_c++] = Vertex(x/5.0, 0, z/5.0);
+				(*vertices)[verts_c++] = Vertex(x, 0, z, 0, 1, 0);
 			}
 		}
 
@@ -60,7 +110,7 @@ namespace Game
 			}
 		}
 		*indices_c = index_c;
-
+		*/
 	}
 
 	inline void SubDivide(std::vector<Vector>* ret, Vector v1, Vector v2, Vector v3, uint8_t depth)

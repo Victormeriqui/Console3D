@@ -41,12 +41,17 @@ namespace Render
 			{
 			};
 
-			virtual double GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal) = 0;
+			virtual double GetLightAmount(const Vector* vertexpos, const Vector* vertexnormal, bool model) = 0;
 			virtual Matrix GetLightMatrix() = 0;
 
 			int GetType()
 			{
 				return type;
+			}
+
+			void SetCastsShadows(bool val)
+			{
+				castshadows = val;
 			}
 
 			bool CastsShadows()
